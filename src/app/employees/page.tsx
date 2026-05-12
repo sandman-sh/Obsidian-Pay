@@ -5,6 +5,8 @@ import { getDashboardData } from "@/lib/dashboard";
 import { formatUsdFromCents, statusTone } from "@/lib/utils";
 import { UserPlus, MapPin, Wallet, Briefcase } from "lucide-react";
 
+export const dynamic = "force-dynamic";
+
 export default async function EmployeesPage() {
   const data = await getDashboardData();
 

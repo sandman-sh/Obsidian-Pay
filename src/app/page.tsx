@@ -24,7 +24,9 @@ const features = [
   },
 ];
 
-export default function HomePage() {
+export const dynamic = "force-dynamic";
+
+export default async function HomePage() {
   return (
     <main className="min-h-screen text-[var(--ink)]">
       {/* ── Ticker ──────────────────────────────────── */}

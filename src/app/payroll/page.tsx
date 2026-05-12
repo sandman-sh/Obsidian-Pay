@@ -6,6 +6,8 @@ import { getDashboardData } from "@/lib/dashboard";
 import { formatCurrency, formatUsdFromCents, statusTone } from "@/lib/utils";
 import { ClipboardList, Info } from "lucide-react";
 
+export const dynamic = "force-dynamic";
+
 export default async function PayrollPage() {
   const data = await getDashboardData();
 

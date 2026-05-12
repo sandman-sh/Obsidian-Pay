@@ -5,6 +5,8 @@ import { formatCurrency, formatUsdFromCents, statusTone } from "@/lib/utils";
 import { Users, DollarSign, Landmark, CreditCard, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 
+export const dynamic = "force-dynamic";
+
 export default async function DashboardPage() {
   const data = await getDashboardData();
   const latestRun = data.payrollRuns[0];

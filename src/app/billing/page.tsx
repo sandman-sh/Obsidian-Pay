@@ -6,6 +6,8 @@ import { env, hasDodoConfig } from "@/lib/env";
 import { formatUsdFromCents, statusTone } from "@/lib/utils";
 import { CreditCard, Shield, Webhook, CheckCircle2, XCircle } from "lucide-react";
 
+export const dynamic = "force-dynamic";
+
 export default async function BillingPage() {
   const data = await getDashboardData();
 
