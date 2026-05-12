@@ -1,0 +1,87 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Organization {
+  id                    String         @id @default(cuid())
+  name                  String
+  slug                  String         @unique
+  baseCurrency          String         @default("USD")
+  billingPlan           String         @default("Scale")
+  treasuryWallet        String?
+  dodoCustomerId        String?
+  dodoSubscriptionId    String?
+  dodoSubscriptionState String         @default("trialing")
+  createdAt             DateTime       @default(now())
+  updatedAt             DateTime       @updatedAt
+  employees             Employee[]
+  payrollRuns           PayrollRun[]
+  billingEvents         BillingEvent[]
+}
+
+model Employee {
+  id                    String        @id @default(cuid())
+  organizationId        String
+  fullName              String
+  email                 String        @unique
+  country               String
+  nativeCurrency        String
+  monthlySalaryUsdCents Int
+  bonusUsdCents         Int           @default(0)
+  department            String
+  title                 String
+  walletAddress         String
+  status                String        @default("active")
+  createdAt             DateTime      @default(now())
+  updatedAt             DateTime      @updatedAt
+  organization          Organization  @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  payrollItems          PayrollItem[]
+}
+
+model PayrollRun {
+  id             String        @id @default(cuid())
+  organizationId String
+  code           String        @unique
+  periodLabel    String
+  status         String        @default("draft")
+  treasuryWallet String?
+  totalUsdCents  Int
+  scheduledFor   DateTime
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  organization   Organization  @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  items          PayrollItem[]
+}
+
+model PayrollItem {
+  id            String      @id @default(cuid())
+  payrollRunId  String
+  employeeId    String
+  usdAmountCents Int
+  localAmount   Float
+  localCurrency String
+  fxRate        Float
+  status        String      @default("queued")
+  txSignature   String?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  payrollRun    PayrollRun  @relation(fields: [payrollRunId], references: [id], onDelete: Cascade)
+  employee      Employee    @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+}
+
+model BillingEvent {
+  id             String       @id @default(cuid())
+  organizationId String
+  sourceId       String?
+  eventType      String
+  status         String
+  amountUsdCents Int?
+  notes          String?
+  createdAt      DateTime     @default(now())
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+}
