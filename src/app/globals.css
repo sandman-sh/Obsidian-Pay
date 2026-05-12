@@ -264,3 +264,21 @@ table { border-collapse: collapse; }
     linear-gradient(90deg, var(--subtle) 1px, transparent 1px);
   background-size: 40px 40px;
 }
+
+/* ── Wallet Adapter Z-Index Fix ────────────────────── */
+.wallet-adapter-dropdown {
+  z-index: 9999 !important;
+}
+
+.wallet-adapter-dropdown-list {
+  z-index: 9999 !important;
+  background: var(--surface) !important;
+  border: 2px solid var(--border) !important;
+  border-radius: 0 !important;
+  box-shadow: var(--sh-md) !important;
+  color: var(--ink) !important;
+}
+
+.wallet-adapter-dropdown-list-item:hover {
+  background: var(--subtle) !important;
+}
