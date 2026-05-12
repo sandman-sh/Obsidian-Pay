@@ -279,6 +279,11 @@ table { border-collapse: collapse; }
   color: var(--ink) !important;
 }
 
+.wallet-adapter-dropdown-list-item {
+  color: var(--ink) !important;
+}
+
 .wallet-adapter-dropdown-list-item:hover {
   background: var(--subtle) !important;
+  color: var(--ink) !important;
 }
