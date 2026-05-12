@@ -100,7 +100,7 @@ export function AppShell({
         {/* ── Main content ─────────────────────────────── */}
         <div className="flex flex-1 flex-col gap-4">
           {/* Header bar */}
-          <header className="border-2 border-[var(--border)] bg-[var(--surface)] px-5 py-3.5 shadow-[var(--sh-lg)] anim-in">
+          <header className="relative z-50 border-2 border-[var(--border)] bg-[var(--surface)] px-5 py-3.5 shadow-[var(--sh-lg)] anim-in">
             <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
               <div>
                 <p className="font-mono text-[0.55rem] uppercase tracking-[0.14em] text-[var(--muted)]">
